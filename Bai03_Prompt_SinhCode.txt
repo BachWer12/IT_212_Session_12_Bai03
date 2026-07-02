@@ -1,0 +1,55 @@
+===== BÀI TẬP 03: SINH MÃ NGUỒN API SPRING BOOT TỪ SRS =====
+===== FILE 01: PROMPT SINH CODE =====
+
+======================================================================
+PROMPT 1: Yêu cầu sinh mã nguồn Spring Boot hoàn chỉnh
+======================================================================
+"Bạn hãy đóng vai một Senior Backend Developer (Java Spring Boot) với 10 năm kinh nghiệm.
+
+Tôi cần bạn sinh mã nguồn cho module ĐĂNG KÝ TÀI KHOẢN CƠ BẢN của hệ thống eKYC dựa trên tài liệu SRS sau:
+
+[DÁN PHẦN 3.1 CỦA SRS: API Register Specifications]
+
+Yêu cầu kỹ thuật:
+1. **Cấu trúc MVC đầy đủ**: 
+   - Entity (JPA)
+   - DTO (Request/Response)
+   - Repository (Spring Data JPA)
+   - Service (Interface + Impl)
+   - Controller (REST API)
+
+2. **Validation**:
+   - @NotBlank, @Email, @Pattern
+   - Custom Validator cho số CCCD 12 số
+   - Custom Validator cho SĐT Việt Nam (10 số, đầu 03/05/07/08/09)
+
+3. **Xử lý exception**: 
+   - ValidationException
+   - DuplicateResourceException
+   - BusinessException
+
+4. **JavaDoc và comment tiếng Việt** cho các method quan trọng
+
+5. **Cấu hình**: 
+   - application.yml với datasource, jpa, server config
+   - pom.xml với dependencies
+
+6. **Bonus**: Sinh sơ đồ kiến trúc Mermaid mô tả luồng Client -> Controller -> Service -> Database
+
+Hãy sinh đầy đủ các file trong package: com.abcbank.ekyc"
+
+======================================================================
+PROMPT 2: Yêu cầu sửa code - Thêm tính năng kiểm tra trùng lặp
+======================================================================
+"Hãy bổ sung vào code đã sinh:
+1. Kiểm tra trùng lặp citizenId trước khi lưu (nếu đã tồn tại thì trả về lỗi 409 Conflict)
+2. Tương tự cho phone và email
+3. Thêm chỉ mục (index) database cho các trường citizenId, phone, email để tối ưu truy vấn"
+
+======================================================================
+PROMPT 3: Yêu cầu sửa code - Thêm logging và audit
+======================================================================
+"Bổ sung vào code:
+1. Thêm SLF4J logging tại Controller và Service
+2. Log thời gian bắt đầu và kết thúc xử lý request
+3. Tạo bảng audit_log để lưu lịch sử thao tác"

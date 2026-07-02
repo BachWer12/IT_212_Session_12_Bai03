@@ -1,0 +1,52 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api/v1
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ekyc_db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      idle-timeout: 300000
+      connection-timeout: 20000
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    open-in-view: false
+
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Ho_Chi_Minh
+
+logging:
+  level:
+    root: INFO
+    com.abcbank.ekyc: DEBUG
+    org.springframework.security: WARN
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/ekyc-service.log
+    max-size: 10MB
+    max-history: 30
+
+app:
+  ekyc:
+    otp-expiry-seconds: 300
+    max-otp-attempts: 5
+    face-match-threshold: 85.0
+    ocr-match-threshold: 90.0
